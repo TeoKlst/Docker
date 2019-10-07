@@ -1,0 +1,11 @@
+-Create virtual machine on VB
+    docker-machine create --driver=virtualbox Char
+
+-List virtual machines
+    dicker-machine ls
+
+-Get the environment commands for your new VM.
+    docker-machine env Char
+
+-Connect your shell to the new machine.
+    eval "$(docker-machine env Char)"
