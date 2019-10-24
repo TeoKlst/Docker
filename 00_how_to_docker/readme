@@ -9,7 +9,7 @@ docker-machine create --driver=virtualbox "machine name"    -> create virtual ma
 docker-machine rm "machine name"                            -> removed specifiecd virtual machine
 docker-machine env "machine name"                           -> get the environment commands for your new VM.
 docker ps                                                   -> get docker container’s
-
+docker volume ls                                            -> list's all docker volumes
 docker images                                               -> shows all docker images
 
 1.  +Create a virtual machine with docker-machine using the virtualbox driver, and named Char.
@@ -45,13 +45,14 @@ docker images                                               -> shows all docker 
         once the shell’s execution is done.
     =>docker pull alpine
     =>docker run alpine ifconfig
-    =>docker run -i -t alpine /bin/sh
+    =>docker run -it --rm alpine /bin/sh
 
 9.  +From the shell of a debian container, install via the container’s package manager
         everything you need to compile C source code and push it onto a git repo (of
         course, make sure before that the package manager and the packages already in the
         container are updated). For this exercise, you should only specify the commands
         to be run directly in the container.
+    =>docker run -ti --rm debian
     =>apt-get update
     =>apt-get upgrade -y
     =>apt-get install -y build-essential git
@@ -89,7 +90,7 @@ docker images                                               -> shows all docker 
     =>
 
 17. +Display all the currently active containers on the Char virtual machine.
-    =>
+    =>s
 
 18. +Relaunch the overlord container.
     =>
