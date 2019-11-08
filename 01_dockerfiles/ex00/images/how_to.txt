@@ -1,0 +1,7 @@
+\\\to to run dockerfile///
+
+-t is the Docker image tag. You can give a name to your image and a tag.
+The second parameter (a ‘.’) specifies the location of the Dockerfile that we created.
+Since we created the Dockerfile in the same folder in which we are running the docker build, we specified the current directory.
+	
+$ docker build -t myimage:latest .
