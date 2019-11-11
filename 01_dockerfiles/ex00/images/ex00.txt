@@ -1,2 +1,0 @@
-FROM ubuntu:latest
-MAINTAINER Teo Kelestura (tkelest@student.wethinkcode.co.za)

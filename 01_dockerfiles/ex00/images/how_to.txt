@@ -1,3 +1,8 @@
+\\\to do///
+From an alpine image 
+you’ll add to your container your favorite text editor, vim or emacs, 
+that will launch along with your container.
+
 \\\to to run dockerfile///
 
 -t is the Docker image tag. You can give a name to your image and a tag.
@@ -5,3 +10,4 @@ The second parameter (a ‘.’) specifies the location of the Dockerfile that w
 Since we created the Dockerfile in the same folder in which we are running the docker build, we specified the current directory.
 	
 $ docker build -t myimage:latest .
+
