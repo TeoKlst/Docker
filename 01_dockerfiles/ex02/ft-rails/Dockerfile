@@ -1,5 +1,5 @@
-# You are going to create your first Dockerfile to containerize Rails applications. That’s
-# a special configuration: this particular Dockerfile will be generic, and called in another
+# You are going to create your first Dockerfile to containerize Rails applications. 
+# That’s a special configuration: this particular Dockerfile will be generic, and called in another
 # Dockerfile, that will look something like this:
 # FROM ft-rails:on-build
 # EXPOSE 3000
