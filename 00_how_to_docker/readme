@@ -175,3 +175,4 @@ docker network ls                                           -> list all networks
 
 34. +Delete the Aiur virtual machine without using rm -rf.
     =>
+    

@@ -18,6 +18,7 @@ ONBUILD RUN cd teamspeak3-server_linux_amd64 &&\
 
 ONBUILD RUN /teamspeak3-server_linux_amd64$ ./ts3server_startscript.sh status
 
+
 # From a debian image you will add the appropriate sources to create a TeamSpeak server, 
 # that will launch along with your container.
 # It will be deemed valid if at least one user can connect to it and engage in a normal discussion (no far-fetched setup),
