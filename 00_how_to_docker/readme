@@ -62,6 +62,7 @@ docker network ls                                           -> list all networks
     =>apt-get update
     =>apt-get upgrade -y
     =>apt-get install -y build-essential git
+    =>apt-get install vim
 
 10. +Create a volume named hatchery.
     =>docker volume create --name hatchery
@@ -116,6 +117,10 @@ docker network ls                                           -> list all networks
     =>docker exec -e FLASK_APP=/root/app.py Abathur python app.py --host=192.168.99.101 --port 3000
 
     -curl $(docker-machine ip Char):3000
+    -docker exec -it [container-id] bash
+    -apt-get update
+    -apt-get install vim
+    -from flask import Flask\napp = Flask(__name__)\n@app.route("/")\ndef hello_world():\n\treturn "<h1>Hello, World!</h1>"\nif __name__ == "__main__":\n\tapp.run(host='0.0.0.0', port=3000)
 
 20. +Create a local swarm, the Char virtual machine should be its manager.
     =>docker swarm init --advertise-addr 192.168.99.101
@@ -123,6 +128,7 @@ docker network ls                                           -> list all networks
 21. +Create another virtual machine with docker-machine using the virtualbox driver, and name it Aiur.
     =>docker-machine create --driver=virtualbox Aiur
 
+\\\\\\\\ ERROR HERE ////////
 22. +Turn Aiur into a slave of the local swarm in which Char is leader (the command to
         take control of Aiur is not requested).
     =>docker-machine ssh Aiur "docker swarm join --token SWMTKN-1-1otavaflx01zbqy3v7bp66p7505yizmgyrh6crfqi57zih2e7y-bb302hj0yg10manfvk27ymvqh 192.168.99.102:2377"
