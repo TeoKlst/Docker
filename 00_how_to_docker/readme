@@ -128,11 +128,10 @@ docker network ls                                           -> list all networks
 21. +Create another virtual machine with docker-machine using the virtualbox driver, and name it Aiur.
     =>docker-machine create --driver=virtualbox Aiur
 
-\\\\\\\\ ERROR HERE ////////
 22. +Turn Aiur into a slave of the local swarm in which Char is leader (the command to
         take control of Aiur is not requested).
     =>docker-machine ssh Aiur "docker swarm join --token SWMTKN-1-1otavaflx01zbqy3v7bp66p7505yizmgyrh6crfqi57zih2e7y-bb302hj0yg10manfvk27ymvqh 192.168.99.102:2377"
-    //docker-machine ssh Aiur "docker swarm join --token $(docker swarm join-token worker -q) $(docker-machine ip Char):2377"
+    //docker-machine ssh Aiur "docker swarm join --token worker $(docker swarm join-token worker -q) $(docker-machine ip Char):2377"
 
 23. +Create an overlay-type internal network that you will name overmind.
     =>docker network create -d overlay overmind
@@ -146,6 +145,7 @@ docker network ls                                           -> list all networks
 25. +List all the services of the local swarm
     =>docker service ls
 
+///////
 26. +Launch a 42school/engineering-bay service in two replicas and make sure that
         the service works properly (see the documentation provided at hub.docker.com).
         This service will be named engineering-bay and will be on the overmind network.
@@ -169,16 +169,18 @@ docker network ls                                           -> list all networks
         never enough Marines to eliminate Zergs. (Remember to take a look at the tasks
         and logs of the service, you’ll see, it’s fun.)
     =>
+///////
 
 31. +Force quit and delete all the services on the local swarm, in one command.
-    =>
+    =>docker service rm $(docker service ls -q)
 
 32. +Force quit and delete all the containers (whatever their status), in one command.
-    =>
+    =>docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
 
 33. +Delete all the container images stored on the Char virtual machine, in one command as well.
-    =>
+    =>docker rmi -f $(docker images -a -q)
 
 34. +Delete the Aiur virtual machine without using rm -rf.
-    =>
+    =>docker-machine rm -y Aiur 
     
