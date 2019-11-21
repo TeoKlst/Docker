@@ -149,10 +149,11 @@ docker network ls                                           -> list all networks
 26. +Launch a 42school/engineering-bay service in two replicas and make sure that
         the service works properly (see the documentation provided at hub.docker.com).
         This service will be named engineering-bay and will be on the overmind network.
-    =>
+    =>docker service create -d --network overmind --name engineering-bay --replicas 2 -e OC_USERNAME=root -e OC_PASSWD=root 42school/engineering-bay
 
 *27. +Get the real-time logs of one the tasks of the engineering-bay service.
     =>docker logs -f engineering-service
+    docker service logs -f $(docker service ps engineering-bay -f "name=engineering-bay.1" -q)
 
 28. +... Damn it, a group of zergs is attacking orbital-command, and shutting down
         the engineering-bay service won’t help at all... You must send a troup of Marines
@@ -160,15 +161,16 @@ docker network ls                                           -> list all networks
         and make sure that the service works properly (see the documentation provided
         at hub.docker.com). This service will be named... marines and will be on the
         overmind network.
-    =>
+    =>docker service create -d --network overmind --name marines --replicas 2 -e OC_USERNAME=root -e OC_PASSWD=root 42school/marine-squad
 
 29. +Display all the tasks of the marines service.
-    =>
+    =>docker service ps marines
 
 30. + Increase the number of copies of the marines service up to twenty, because there’s
         never enough Marines to eliminate Zergs. (Remember to take a look at the tasks
         and logs of the service, you’ll see, it’s fun.)
-    =>
+    =>docker service scale -d marines=20
+    docker service logs -f $(docker service ps marines -f "name=marines.11" -q)
 ///////
 
 31. +Force quit and delete all the services on the local swarm, in one command.
