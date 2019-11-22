@@ -49,7 +49,6 @@ ENTRYPOINT (/opt/gitlab/embedded/bin/runsvdir-start &) && \
 # The container will be deemed valid if you can access the web client, create users and interact via GIT with this container (HTTPS and SSH).
 # Obviously, you are not allowed to use the official container from Gitlab, it would be a shame...
 
-
 #How To Run
 # docker build -t gitlab-container ./ && docker run -itd --restart=on-failure -p 8080:80 -p 8022:22 -p 8443:443 --privileged gitlab-container
 # docker run -it 912b3a6793f0 /bin/sh
