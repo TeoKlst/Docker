@@ -1,61 +1,19 @@
-
-# ONBUILD ADD . /app/src
-# ONBUILD RUN /usr/local/bin/python-build --dir /app/src
-
-# FROM ruby
-
-# RUN apt-get update && \
-#     apt-get install nodejs -y && \
-#     gem install rails && \
-#     mkdir -p /opt/app
-
-# ONBUILD WORKDIR /opt/app
-# ONBUILD ADD railsapp /opt/app
-
-# ONBUILD RUN bundle install && rake db:migrate && rake db:seed
-
-# mkdir -p https://superuser.com/questions/165157/what-does-the-p-flag-do-in-mkdir-p
-
-# https://hub.docker.com/_/rails/
-# https://www.freecodecamp.org/news/painless-rails-development-environment-setup-with-docker/
-#  FYI https://serverfault.com/questions/644180/what-does-qq-argument-for-apt-get-mean
-# rake db:setup https://blog.cloud66.com/migrating-a-rails-application-to-docker/
-# http://www.xyzpub.com/en/ruby-on-rails/3.2/seed_rb.html
-# rake db:migrate https://medium.com/@tushartuteja/setting-up-rails-with-postgres-using-docker-426c853e8590
-
-# name ft-rails
-FROM                        ruby:latest
+FROM            ruby:latest
 LABEL Teo Kelestura (tkelest@student.wethinkcode.co.za)
 
-RUN                            gem install rails sqlite3 &&\
-                                apt update &&\
-                                apt install nodejs -y
+RUN             gem install rails sqlite3 &&\
+                apt update &&\
+                apt install nodejs -y
 
-ONBUILD ADD            app /opt/app
+ONBUILD ADD     app /opt/app
 
-ONBUILD WORKDIR    /opt/app
-
-ONBUILD EXPOSE    3000
-
-ONBUILD RUN            bundle install &&\
-                                bundle exec rake db:migrate &&\
-                                bundle exec rake db:seed
-
-# /////////////////////
-
-RUN apt-get update -y && apt-get install -y build-essential libpq-dev nodejs sqlite3
-
-ONBUILD COPY app /opt/app
 ONBUILD WORKDIR /opt/app
 
-ONBUILD EXPOSE 3000
-ONBUILD RUN bundle install
-ONBUILD RUN rake db:migrate
-ONBUILD RUN rake db:seed
+ONBUILD EXPOSE  3000
 
-# docker build -t ft-rails:on-build .
-# docker build -t ex02 .
-# docker run -it --rm -p 3000:3000 ex02
+ONBUILD RUN     bundle install && \
+                bundle exec rake db:migrate &&\
+ 				bundle exec rake db:seed
 
 
 # You are going to create your first Dockerfile to containerize Rails applications. 
@@ -69,7 +27,3 @@ ONBUILD RUN rake db:seed
 # Docker has to install the approtiate gems when it builds, but also launch the migrations and the db population for your application.
 # The child Dockerfile should launch the rails server (see example below).
 # If you don’t know what commands to use, it’s high time to look at the Ruby on Rails documentation.
-
-# cd ft-rails && docker build . -t ft-rails:on-build && cd ..
-# docker build . -t example
-# docker run -it -p 3000:3000 example
