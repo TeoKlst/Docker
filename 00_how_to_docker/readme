@@ -123,7 +123,7 @@ docker network ls                                           -> list all networks
     -from flask import Flask\napp = Flask(__name__)\n@app.route("/")\ndef hello_world():\n\treturn "<h1>Hello, World!</h1>"\nif __name__ == "__main__":\n\tapp.run(host='0.0.0.0', port=3000)
 
 20. +Create a local swarm, the Char virtual machine should be its manager.
-    =>docker swarm init --advertise-addr 192.168.99.101
+    =>docker swarm init --advertise-addr $(docker-machine ip Char)
 
 21. +Create another virtual machine with docker-machine using the virtualbox driver, and name it Aiur.
     =>docker-machine create --driver=virtualbox Aiur
@@ -154,6 +154,7 @@ docker network ls                                           -> list all networks
 *27. +Get the real-time logs of one the tasks of the engineering-bay service.
     =>docker logs -f engineering-service
     docker service logs -f $(docker service ps engineering-bay -f "name=engineering-bay.1" -q)
+    docker service logs -f $(docker service ps --quiet --filter "name=engineering-bay.1"  engineering-bay)
 /////////
 
 28. +... Damn it, a group of zergs is attacking orbital-command, and shutting down
