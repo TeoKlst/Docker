@@ -150,12 +150,10 @@ docker network ls                                           -> list all networks
         This service will be named engineering-bay and will be on the overmind network.
     =>docker service create -d --network overmind --name engineering-bay --replicas 2 -e OC_USERNAME=root -e OC_PASSWD=root 42school/engineering-bay
 
-/////////
 *27. +Get the real-time logs of one the tasks of the engineering-bay service.
-    =>docker logs -f engineering-service
+    =>docker logs -f engineering-bay
     docker service logs -f $(docker service ps engineering-bay -f "name=engineering-bay.1" -q)
     docker service logs -f $(docker service ps --quiet --filter "name=engineering-bay.1"  engineering-bay)
-/////////
 
 28. +... Damn it, a group of zergs is attacking orbital-command, and shutting down
         the engineering-bay service won’t help at all... You must send a troup of Marines
