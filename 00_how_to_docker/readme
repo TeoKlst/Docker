@@ -170,7 +170,7 @@ docker network ls                                           -> list all networks
         never enough Marines to eliminate Zergs. (Remember to take a look at the tasks
         and logs of the service, you’ll see, it’s fun.)
     =>docker service scale -d marines=20
-    docker service logs -f $(docker service ps marines -f "name=marines.11" -q)
+    docker service logs -f marines
 
 31. +Force quit and delete all the services on the local swarm, in one command.
     =>docker service rm $(docker service ls -q)
